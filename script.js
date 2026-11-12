@@ -24,3 +24,47 @@ const year = document.querySelector('#year');
 if (year) {
   year.textContent = new Date().getFullYear();
 }
+
+const loginForm = document.getElementById("loginForm");
+const passwordInput = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+const message = document.getElementById("message");
+
+togglePassword.addEventListener("click", function () {
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        togglePassword.textContent = "Hide";
+    } else {
+        passwordInput.type = "password";
+        togglePassword.textContent = "Show";
+    }
+});
+
+loginForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+        message.style.color = "#b33a3a";
+        message.textContent = "Please fill in all fields.";
+        return;
+    }
+
+    if (password.length < 6) {
+        message.style.color = "#b33a3a";
+        message.textContent = "Password must be at least 6 characters.";
+        return;
+    }
+
+    message.style.color = "#64815b";
+    message.textContent = "Demo sign-in successful! Welcome back.";
+});
+
+document.getElementById("forgotPassword").addEventListener("click", function (event) {
+    event.preventDefault();
+
+    message.style.color = "#986f55";
+    message.textContent = "Please contact me for password assistance.";
+});
